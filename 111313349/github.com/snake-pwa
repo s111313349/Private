@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>經典貪吃蛇 PWA</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#4CAF50">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" href="icon-192.png">
+</head>
+<body>
+    <div class="game-container">
+        <h1>貪吃蛇 PWA</h1>
+        <div id="score">分數: 0</div>
+        <canvas id="gameCanvas" width="400" height="400"></canvas>
+        <div class="controls">
+            <button id="startBtn">開始遊戲</button>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+    <script>
+        // 註冊 Service Worker 讓 App 支援離線瀏覽
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(reg => console.log('Service Worker 註冊成功！範圍:', reg.scope))
+                    .catch(err => console.log('Service Worker 註冊失敗:', err));
+            });
+        }
+    </script>
+</body>
+</html>
